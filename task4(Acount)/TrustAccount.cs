@@ -9,12 +9,11 @@ namespace task4_Acount_
     {
         public int withdrawlsCount { get; set; }
 
-        public DateTime accountStartingDate { get; set; }
-        public DateTime pastDate { get; set; }
+        public DateTime currentDate { get; set; }
 
         public TrustAccount(string _name = "Unnamed Account", double _balance = 0.0, double _intrestRate = 12) : base(_name, _balance)
         {
-            pastDate = accountStartingDate = DateTime.Now;
+            currentDate = DateTime.Now;
             withdrawlsCount = 0;
             intrestRate = _intrestRate;
         }
@@ -27,10 +26,10 @@ namespace task4_Acount_
         public override bool Withdraw(double amount)
         {
 
-            if (AccountUtil.isPAssedYear(pastDate))
+            if (AccountUtil.isPAssedYear(currentDate))
             {
                 withdrawlsCount = 0;
-                pastDate = DateTime.Now;
+                currentDate = DateTime.Now;
             }
 
             if (withdrawlsCount >= 3) return false;
